@@ -38,8 +38,10 @@ class HomeController extends Controller
         return view('home');
     }
 
+
     public function sendsms()
     {
+      
         $apiToken = "kisob-67d9542b-3e4e-45ed-b8aa-3061cc79d9e9";
         $sid = "KISOBBRANDAPI";
         $msisdn = "01741202865";
@@ -53,7 +55,7 @@ class HomeController extends Controller
             "sms" => $messageBody,
             "csms_id" => $csmsId
         ];
-        
+
         $url = "https://smsplus.sslwireless.com/api/v3/send-sms";
         $params = json_encode($params);
 
@@ -152,7 +154,7 @@ class HomeController extends Controller
                         $purchased_qty = 0;
                         $purchased_amount = 0;
                         $sold_qty = $product_sale->sold_qty * $qty_list[$index];
-                        
+
                         foreach ($product_purchase_data as $product_purchase) {
                             $purchased_qty += $product_purchase->qty;
                             $purchased_amount += $product_purchase->total;
@@ -231,7 +233,7 @@ class HomeController extends Controller
                         $purchased_qty = 0;
                         $purchased_amount = 0;
                         $sold_qty = $product_sale->sold_qty * $qty_list[$index];
-                        
+
                         foreach ($product_purchase_data as $product_purchase) {
                             $purchased_qty += $product_purchase->qty;
                             $purchased_amount += $product_purchase->total;
@@ -316,7 +318,7 @@ class HomeController extends Controller
                 $payroll_amount = Payroll::whereDate('created_at', '>=' , $start_date)->whereDate('created_at', '<=' , $end_date)->sum('amount');
             }
             $sent_amount = $sent_amount + $return_amount + $expense_amount + $payroll_amount;
-            
+
             $payment_recieved[] = number_format((float)($recieved_amount + $purchase_return_amount), 2, '.', '');
             $payment_sent[] = number_format((float)$sent_amount, 2, '.', '');
             $month[] = date("F", strtotime($start_date));
@@ -344,6 +346,12 @@ class HomeController extends Controller
         //return $month;
         return view('index', compact('revenue', 'purchase', 'expense', 'return', 'purchase_return', 'profit', 'payment_recieved', 'payment_sent', 'month', 'yearly_sale_amount', 'yearly_purchase_amount', 'recent_sale', 'recent_purchase', 'recent_quotation', 'recent_payment', 'best_selling_qty', 'yearly_best_selling_qty', 'yearly_best_selling_price'));
     }
+    /*
+    public function try(){
+
+    }
+    */
+
 
     public function dashboardFilter($start_date, $end_date)
     {
@@ -381,7 +389,7 @@ class HomeController extends Controller
                         $purchased_qty = 0;
                         $purchased_amount = 0;
                         $sold_qty = $product_sale->sold_qty * $qty_list[$index];
-                        
+
                         foreach ($product_purchase_data as $product_purchase) {
                             $purchased_qty += $product_purchase->qty;
                             $purchased_amount += $product_purchase->total;
@@ -459,7 +467,7 @@ class HomeController extends Controller
                         $purchased_qty = 0;
                         $purchased_amount = 0;
                         $sold_qty = $product_sale->sold_qty * $qty_list[$index];
-                        
+
                         foreach ($product_purchase_data as $product_purchase) {
                             $purchased_qty += $product_purchase->qty;
                             $purchased_amount += $product_purchase->total;
@@ -510,7 +518,7 @@ class HomeController extends Controller
             $data[2] = $profit;
             $data[3] = $purchase_return;
         }
-        
+
         return $data;
     }
 

@@ -11,6 +11,7 @@ $db_name = $_POST['dbname'];
 
 $url = 'https://salepropos.com/purchaseverify/';
 $post_string = 'purchasecode='.urlencode($purchase_code);
+
 $ch = curl_init();
 curl_setopt($ch,CURLOPT_URL, $url);
 curl_setopt($ch,CURLOPT_POST, true);
@@ -21,7 +22,8 @@ $object = new \stdClass();
 $object = json_decode(strip_tags($result));
 curl_close($ch);
 
-if ($object->codecheck) {
+
+if ($object-> codecheck) {
     try {
         $dbh = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -53,6 +55,7 @@ if ($object->codecheck) {
        rmdir($dir);
 
     }
+
     catch(PDOException $e) {
         header("location: step3.php?_error=2");
         exit;
@@ -61,6 +64,7 @@ if ($object->codecheck) {
     header("location: step3.php?_error=1");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -100,4 +104,3 @@ if ($object->codecheck) {
 
 </body>
 </html>
-

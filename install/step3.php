@@ -28,8 +28,10 @@
 		        ?>
 		        <form  action="step4.php" method="post">
 		            <fieldset>
-						<label>Envato Purchase Code <a href="#purchasecodeModal" role="button" data-toggle="modal">?</a></label>
-		                <input type='text' class="form-control" name="purchasecode">
+
+						        <label>Enter Purchase Code <a href="#purchasecodeModal" role="button" data-toggle="modal">?</a></label>
+                    <input type='text' class="form-control" name="purchasecode">
+
 		                <label>Database Host (<span class='help-block'>e.g. localhost</span>)</label>
 		                <input type='text' class="form-control" name="dbhost">
 		                <label>Database Username</label>
